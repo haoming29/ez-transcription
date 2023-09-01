@@ -1,0 +1,42 @@
+# Python-related files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyi
+*.egg-info/
+dist/
+build/
+.vscode/
+.idea/
+
+# Dependency directories
+venv/
+env/
+env.bak/
+env1/
+env2/
+env3/
+env4/
+env5/
+.pytest_cache/
+
+# Logs
+*.log
+
+# Compiled files
+*.pyc
+
+# Editor-specific files
+.idea/
+.vscode/
+
+# Ignore development database file (if using SQLite)
+db.sqlite3
+
+# Ignore development configuration file (if using environment variables)
+.env
+
+static/
