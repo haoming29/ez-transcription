@@ -49,16 +49,16 @@ jobs:
           yarn build
 
       - name: Create build directory if it doesn't exist
-        run: mkdir -p build
+        run: mkdir -p public
 
-      - name: Move build files to /build
+      - name: Move build files to /public
         run: |
-          mv frontend/build/* build/
+          mv frontend/build/* public/
 
       - name: Commit and push build files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add build/
+          git add public/
           git commit -m "Add build files" || echo "No changes to commit"
           git push

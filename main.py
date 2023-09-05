@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 # Path to your React build directory
-REACT_BUILD_PATH = Path("frontend/build")
+REACT_BUILD_PATH = Path("public")
 
 # Serve static files
 app.mount("/static", StaticFiles(directory=REACT_BUILD_PATH / "static", check_dir=False), name="static")
