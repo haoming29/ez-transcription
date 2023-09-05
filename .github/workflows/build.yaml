@@ -53,6 +53,9 @@ jobs:
       - name: Create build directory if it doesn't exist
         run: mkdir -p public
 
+      - name: Clear build directory
+        run: rm -rf public/*
+
       - name: Move build files to /public
         run: |
           mv frontend/build/* public/

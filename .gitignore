@@ -39,4 +39,4 @@ db.sqlite3
 # Ignore development configuration file (if using environment variables)
 .env
 
-static/
+/static/
