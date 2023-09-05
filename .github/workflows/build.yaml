@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ssh-key: ${{ secrets.ACTIONS_SSH_KEY }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -61,4 +63,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add public/
           git commit -m "Add build files" || echo "No changes to commit"
-          git push https://${{ secrets.REPO_PAT }}@github.com/${{ github.repository }}.git
+          git push origin HEAD:${{ github.ref }}
