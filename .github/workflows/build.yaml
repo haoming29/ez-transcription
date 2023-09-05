@@ -1,0 +1,61 @@
+name: Build React Project and Commit
+
+on:
+  push:
+    branches:
+      - main # or your default branch name
+    paths:
+      - "frontend/**"
+  workflow_dispatch:
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            frontend/node_modules
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('frontend/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          yarn install --frozen-lockfile
+
+      - name: Build React project
+        run: |
+          cd frontend
+          yarn build
+
+      - name: Move build files to /build
+        run: |
+          mv frontend/build/* build/
+
+      - name: Commit and push build files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add build/
+          git commit -m "Add build files" || echo "No changes to commit"
+          git push
