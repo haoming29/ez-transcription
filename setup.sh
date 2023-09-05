@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Starting setup script..."
 
 # Check if python3 is installed
 if ! command -v python3 &> /dev/null
@@ -15,6 +16,8 @@ fi
 # Create a virtual environment under the current directory
 python3 -m venv venv
 
+echo "Created virtual environment."
+
 # Activate the virtual environment
 source venv/bin/activate
 
@@ -26,9 +29,13 @@ then
     exit
 fi
 
+echo "Start installing pip packages..."
+
 # Install packages from requirements.txt
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
 else
     echo "requirements.txt not found in the current directory."
 fi
+
+echo "Setup finished"
