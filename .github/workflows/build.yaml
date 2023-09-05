@@ -3,10 +3,9 @@ name: Build React Project and Commit
 on:
   push:
     branches:
-      - main # or your default branch name
+      - master
     paths:
       - "frontend/**"
-  workflow_dispatch:
 
 jobs:
   build-and-commit:
@@ -47,6 +46,9 @@ jobs:
         run: |
           cd frontend
           yarn build
+
+      - name: Create build directory if it doesn't exist
+        run: mkdir -p build
 
       - name: Move build files to /build
         run: |
