@@ -61,4 +61,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add public/
           git commit -m "Add build files" || echo "No changes to commit"
-          git push
+          git push https://${{ secrets.REPO_PAT }}@github.com/${{ github.repository }}.git
