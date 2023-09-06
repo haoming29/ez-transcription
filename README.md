@@ -8,24 +8,26 @@
 
 - Clone the project to your local achine:
 
-  `git@github.com:Techming/ez-transcription.git`
+  ```bash
+  git clone git@github.com:Techming/ez-transcription.git
+  ```
 
 - Make sure that you have [Python ^3.8](https://www.python.org/downloads/release/python-3810/) and [pip](https://pypi.org/project/pip/) installed. To check, run the following command:
 
-```bash
-$ python3 --version
-Python 3.8.5 # or anything above 3.8.0
+  ```bash
+  $ python3 --version
+  Python 3.8.5 # or anything above 3.8.0
 
-$ pip3 --version
-pip 20.1.1 from /PATH/TO/YOUR/PYTHON/INTEPRETER/python3.8/site-packages/pip (python 3.8)
-```
+  $ pip3 --version
+  pip 20.1.1 from /PATH/TO/YOUR/PYTHON/INTEPRETER/python3.8/site-packages/pip (python 3.8)
+  ```
 
 - Go to [Deepgram](https://console.deepgram.com/signup), register your account, create a new project and an API key.
 - Under project root, create a `.env` file and copy & paste your API key with the name `DEEPGRAM_API_KEY`
 
-```bash
-echo DEEPGRAM_API_KEY=<PUT-YOUR-API-KEY-HERE> > .env
-```
+  ```bash
+  echo DEEPGRAM_API_KEY=<PUT-YOUR-API-KEY-HERE> > .env
+  ```
 
 - For Mac users, simply navigate to the project root and run `./setup.sh`
 
