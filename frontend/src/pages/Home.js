@@ -117,11 +117,18 @@ const Home = () => {
     }
     const result = [];
     let buffer = "";
-    transcription.paragraphs.forEach((para) => {
-      if (curSpeaker !== para.speaker) {
+    transcription.paragraphs.forEach((para, idx) => {
+      if (
+        curSpeaker !== para.speaker ||
+        idx === transcription.paragraphs.length - 1
+      ) {
+        // The first speaker change (-1 to first real speaker number)
+        // has no content
         if (curSpeaker !== -1) {
-          // change of speaker
-          let speakerContent = "";
+          // We have pushed paragraphs into the buffer of
+          // the current speaker and now we are about to
+          //  change the speaker
+          let speakerContent = ""; // determine the format of speaker title and name
           if (
             !speakers[curSpeaker].firstname &&
             !speakers[curSpeaker].lastname
@@ -141,6 +148,7 @@ const Home = () => {
               speakerContent += speakers[curSpeaker].lastname;
             }
           }
+          // Push formatted content as a new paragraph
           const paraElement = (
             <p key={uuidv4()}>
               <b>{speakerContent}</b>
